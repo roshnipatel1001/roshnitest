@@ -1,0 +1,26 @@
+<h3>List</h3>
+<div>
+  <button routerLink="/add">Add</button><br /><br />
+
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Image</th>
+
+      <!-- <th colspan="3">Action</th> -->
+    </thead>
+    <tbody *ngIf="listData.length">
+      <tr *ngFor="let data of listData; let i = index">
+        <td>{{ data.id }}</td>
+        <td>{{ data.first_name }}</td>
+        <td>{{ data.last_name }}</td>
+        <td>
+          <img src="{{ data.avatar }}" alt="img" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br /><br />

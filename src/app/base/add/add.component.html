@@ -1,0 +1,104 @@
+<br />
+<br />
+<div>
+  <form #empForm="ngForm" (ngSubmit)="onSubmmit(empForm)">
+    <div>
+      <label> Frist Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="frist_name"
+        #frist_name="ngModel"
+        [(ngModel)]="model.frist_name"
+        autocomplete="off"
+        required
+      />
+      <div
+        *ngIf="frist_name.invalid && (frist_name.dirty || frist_name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="frist_name.errors?.required" style="color: red">
+          This field is required.
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label> Last Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="last_name"
+        #last_name="ngModel"
+        [(ngModel)]="model.last_name"
+        autocomplete="off"
+        required
+      />
+      <div
+        *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="last_name.errors?.required" style="color: red">
+          This field is required.
+        </div>
+      </div>
+    </div>
+    <br />
+    <div>
+      <label> Email:</label>
+      <input
+        type="email"
+        class="form-control"
+        name="age"
+        #email="ngModel"
+        [(ngModel)]="model.email"
+        autocomplete="off"
+        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+        required
+      />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="email.errors?.required" style="color: red">
+          This field is required.
+        </div>
+        <div *ngIf="email.errors?.pattern" style="color: red">
+          Email is invalid.
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="col-md-12 pt-2">
+      <div class="form-group">
+        <label>Profile Image</label>
+        <div class="admin-image mt-0">
+          <label>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              (change)="handleFileSelect($event)"
+              required
+            />
+            <div class="upload-image">
+              <span class="icon-camera"></span>
+            </div>
+          </label>
+
+          <span *ngIf="base64textStringImage">
+            <img
+              [src]="'data:image/jpg;base64,' + base64textStringImage"
+              fallback-src="assets/images/admin.png"
+              alt="..."
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+   
+    <br />
+    <button type="submit" [disabled]="!empForm.valid">Submit</button>
+  </form>
+</div>
